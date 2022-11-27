@@ -20,8 +20,18 @@ export class App extends Component {
     filter: '',
   };
   addContact = ({ name, number }) => {
-    const newContact = { name: name, id: nanoid(), number: number };
+    const { contacts } = this.state;
 
+    const hasName = contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (hasName) {
+      alert(`${name} is alredy in contacts`);
+      return;
+    }
+
+    const newContact = { name: name, id: nanoid(), number: number };
     this.setState(prevState => ({
       contacts: [newContact, ...prevState.contacts],
     }));
@@ -42,6 +52,18 @@ export class App extends Component {
     );
   };
 
+  deleteContact = idContact => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(({ id }) => id !== idContact),
+    }));
+  };
+
+  deleteItem = deletedId => {
+    this.setState(p => ({
+      contacts: p.contacts.filter(({ id }) => id !== deletedId),
+    }));
+  };
+
   render() {
     const { filter } = this.state;
     const visibleContacts = this.getVisibelContats();
@@ -54,7 +76,10 @@ export class App extends Component {
 
         <Section title={'Contacts'}>
           <Filter value={filter} onChange={this.handleChangeFilter}></Filter>
-          <ContactList contacts={visibleContacts} />
+          <ContactList
+            contacts={visibleContacts}
+            onDeleteContact={this.deleteContact}
+          />
         </Section>
       </Container>
     );
