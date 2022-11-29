@@ -11,6 +11,8 @@ export class ContactForm extends Component {
     number: '',
   };
 
+  static propTypes = { onSubmit: PropTypes.func.isRequired };
+
   idInputName = nanoid();
   idInputNumber = nanoid();
 
@@ -63,7 +65,3 @@ export class ContactForm extends Component {
     );
   }
 }
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
