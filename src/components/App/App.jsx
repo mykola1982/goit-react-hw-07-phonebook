@@ -58,12 +58,6 @@ export class App extends Component {
     }));
   };
 
-  deleteItem = deletedId => {
-    this.setState(p => ({
-      contacts: p.contacts.filter(({ id }) => id !== deletedId),
-    }));
-  };
-
   render() {
     const { filter } = this.state;
     const visibleContacts = this.getVisibelContats();

@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import { FilterStyled } from './Filter.styled';
-import { Label, Input } from 'components/ContactForm/ContactForm.styled';
+import { FilterStyled, Input, Label } from './Filter.styled';
 
 export const Filter = ({ value, onChange }) => {
   return (
