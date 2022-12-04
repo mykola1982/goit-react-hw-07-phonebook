@@ -14,7 +14,10 @@ import { Button } from 'components/ContactItem/ContactItem.styled';
 
 const schema = yup.object().shape({
   name: yup.string().required('This field is required'),
-  number: yup.string().phone(null, true).required('This field is required'),
+  number: yup
+    .string()
+    .phone(null, true, 'Enter your phone number in the format +000000000000')
+    .required(),
 });
 
 const idInputName = nanoid();
@@ -47,7 +50,7 @@ export const ContactForm = ({ onSubmit }) => {
           id={idInputNumber}
           type="tel"
           name="number"
-          placeholder="+380678888888"
+          placeholder="+0000000000000"
         />
 
         <Button type="submit">Add contact</Button>
