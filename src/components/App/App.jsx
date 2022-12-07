@@ -21,14 +21,10 @@ export class App extends Component {
   };
 
   componentDidMount() {
-    try {
-      const contacts = localStorage.getItem('contacts');
-      const parsedContacts = JSON.parse(contacts);
-      if (parsedContacts) {
-        this.setState({ contacts: parsedContacts });
-      }
-    } catch (error) {
-      console.error(error.message);
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts !== null) {
+      this.setState({ contacts: parsedContacts });
     }
   }
 
