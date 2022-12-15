@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const SectionStyled = styled.section`
   padding-top: 30px;
+  padding-bottom: 15px;
 `;
 
 export const SectionTitle = styled.h2`
