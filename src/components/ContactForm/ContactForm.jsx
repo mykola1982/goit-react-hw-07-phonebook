@@ -1,4 +1,8 @@
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
+import { useSelector } from 'react-redux/es/exports';
+import { getContacts } from 'redux/selectors';
+
 import { nanoid } from 'nanoid';
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -28,9 +32,21 @@ const initialValues = {
   number: '',
 };
 
-export const ContactForm = ({ onSubmit }) => {
-  const handleSubmit = (values, { resetForm }) => {
-    onSubmit(values);
+export const ContactForm = () => {
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
+
+  const handleSubmit = ({ name, number }, { resetForm }) => {
+    const hasName = contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (hasName) {
+      alert(`${name} is alredy in contacts`);
+      return;
+    }
+
+    dispatch(addContact(name, number));
     resetForm();
   };
 
@@ -58,8 +74,4 @@ export const ContactForm = ({ onSubmit }) => {
       </StyledForm>
     </Formik>
   );
-};
-
-ContactForm.propType = {
-  onSubmit: PropTypes.func.isRequired,
 };
