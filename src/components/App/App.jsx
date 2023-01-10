@@ -29,6 +29,7 @@ export const App = () => {
       <Section title={'Contacts'}>
         <Filter />
         {isLoading && !error && <Loader />}
+        {error && <div>Something went wrong...Try reloading the page</div>}
         <ContactList />
       </Section>
     </Container>
