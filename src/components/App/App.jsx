@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from 'redux/operations';
 import { selectError, selectIsLoading } from 'redux/selectors';
 
-import { Container } from './App.styled';
+import { Container, Text } from './App.styled';
 
 import { Section } from 'components/Section';
 import { ContactForm } from 'components/ContactForm';
@@ -29,7 +29,7 @@ export const App = () => {
       <Section title={'Contacts'}>
         <Filter />
         {isLoading && !error && <Loader />}
-        {error && <div>Something went wrong...Try reloading the page</div>}
+        {error && <Text>Something went wrong...Try reloading the page</Text>}
         <ContactList />
       </Section>
     </Container>
