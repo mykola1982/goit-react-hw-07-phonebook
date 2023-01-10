@@ -15,6 +15,7 @@ export const App = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
+  console.log(error);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -29,7 +30,7 @@ export const App = () => {
       <Section title={'Contacts'}>
         <Filter />
         {isLoading && !error && <Loader />}
-        {error && <Text>Something went wrong...Try reloading the page</Text>}
+        {error && <Text>{error}</Text>}
         <ContactList />
       </Section>
     </Container>
