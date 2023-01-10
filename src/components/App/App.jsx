@@ -9,6 +9,7 @@ import { Section } from 'components/Section';
 import { ContactForm } from 'components/ContactForm';
 import { Filter } from 'components/Filter';
 import { ContactList } from 'components/ContactList';
+import { Loader } from 'components/Loader/Loader';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ export const App = () => {
 
       <Section title={'Contacts'}>
         <Filter />
-        {isLoading && !error && <b>Reguest in progress...</b>}
+        {isLoading && !error && <Loader />}
         <ContactList />
       </Section>
     </Container>
